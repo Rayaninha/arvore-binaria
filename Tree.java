@@ -19,38 +19,20 @@ public class Tree {
         }
     }
 
-    boolean search(int id, Node place) {
-        if (place == null) {
-            return false;
-        } else if (id < place.id) {
-            if (place.left != null) {
-                if (place.left.id == id) {
-                    System.out.println("search left: " + place.left.id);
-                    return true;
-                } else {
-                    search(id, place.left);
-                }
-            }
-        } else if (id > place.id) {
-            if (place.right != null) {
-                if (place.right.id == id) {
-                    System.out.println("search right: " + place.right.id);
-                    return true;
-                } else {
-                    search(id, place.right);
-                }
-            }
-        } else if (id == place.id) {
-            return true;
-        } else {
-            // System.out.println("value not found");
+    public boolean search(int id, Node place) {
+        if (root == null) {
             return false;
         }
-        return false;
+        while (id != place.id) {
+            if (id < place.id) {
+                place = place.left;
+            } else {
+                place = place.right;
+            }
+            if (place == null) {
+                return false;
+            }
+        }
+        return true;
     }
-
-    public void reset(Node place) {
-
-    }
-
 }
